@@ -1,0 +1,10 @@
+
+body {
+    background-color: #cccccc;
+    padding: 8px;
+}
+
+.alert {
+    background-color: white;
+    width: 100% ;
+}
