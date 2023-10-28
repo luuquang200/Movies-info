@@ -1,4 +1,5 @@
 import vcheader from "./header.js"
+import vcnav from "./nav.js"
 
 export default {
     data() {
@@ -7,12 +8,14 @@ export default {
         }
     },
     components: {
-        vcheader
+        vcheader,
+        vcnav
     },
     template: `
     <div class = container-fluid>
         <div class="row">
             <vcheader/>
+            <vcnav/>
         </div>
     </div>
     `
