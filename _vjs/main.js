@@ -1,5 +1,6 @@
 import vcheader from "./header.js"
 import vcnav from "./nav.js"
+import vctopBoxOfficeMovies from './top_boxoffice.js';
 
 export default {
     data() {
@@ -9,13 +10,15 @@ export default {
     },
     components: {
         vcheader,
-        vcnav
+        vcnav,
+        vctopBoxOfficeMovies
     },
     template: `
     <div class = container-fluid>
         <div class="row">
             <vcheader/>
             <vcnav/>
+            <vctopBoxOfficeMovies/>
         </div>
     </div>
     `
