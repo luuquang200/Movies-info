@@ -92,6 +92,31 @@ export default {
                             items: top50Movies.slice((page - 1) * perPage, page * perPage)
                         };
                         break;
+                    case 'topboxoffice':
+                        const perPage2 = params.get('per_page') || 10;
+                        const page2 = params.get('page') || 1;
+                        const number = params.get('number') || 1;
+
+                        // the logic to get the "number" of top highest-grossing movies 
+                        const topBoxOfficeMovies = movies
+                        .filter(movie => movie.boxOffice && movie.boxOffice.cumulativeWorldwideGross)
+                        .sort((a, b) => b.boxOffice.cumulativeWorldwideGross.replace(/\D/g, '') - a.boxOffice.cumulativeWorldwideGross.replace(/\D/g, ''))
+                        .slice(0, number);
+
+                        console.log('topBoxOfficeMovies.length: ' + topBoxOfficeMovies.length);
+                        console.log(topBoxOfficeMovies);
+                        for (let i = 0; i < topBoxOfficeMovies.length; i++) {
+                            console.log(topBoxOfficeMovies[i].boxOffice.cumulativeWorldwideGross);
+                        }
+                        result = {
+                            page: page2,
+                            per_page: perPage2,
+                            total_page: Math.ceil(topBoxOfficeMovies.length / perPage2),
+                            total: topBoxOfficeMovies.length,
+                            items: topBoxOfficeMovies.slice((page2 - 1) * perPage2, page2 * perPage2)
+                        };
+                        break;
+
                     default:
                         throw new Error(`Invalid class: ${cls}`);
                 }
