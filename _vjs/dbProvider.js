@@ -137,7 +137,7 @@ export default {
                             per_page: perPage3,
                             total_page: Math.ceil(mostPopularMovies.length / perPage3),
                             total: mostPopularMovies.length,
-                            items: mostPopularMovies.slice((page3 - 1) * perPage3, page3 * perPage3)
+                            items: mostPopularMovies
                         };
                         break;
 

@@ -12,12 +12,15 @@ export default {
         }
     },
     async created() {
-        const queryString = `get/mostpopular/?per_page=15&page=1&number=${this.numOfElement}`;
+        const queryString = `get/mostpopular/?number=${this.numOfElement}`;
         const topHighestRevenue = await dbProvider.fetch(queryString);
+        console.log('topHighestRevenue');
+        console.log(topHighestRevenue);
         this.database = topHighestRevenue.items;
+        this.numOfPage = Math.ceil(this.numOfElement / 3);
         console.log('this.database');
         console.log(this.database);
-        this.numOfPage = Math.ceil(this.numOfElement / 3);
+       
     },
     computed: {
         currentMovies() {
@@ -39,9 +42,9 @@ export default {
                 this.current--;
             }
         },
-        paginate(event) {
-            this.current = parseInt(event.target.id) - 1;
-        },
+        paginate(index) {
+            this.current = index;
+          },
         setActiveIndex(index) {
             this.current = index;
         },
@@ -51,7 +54,7 @@ export default {
         <div class="movie-header carousel slide">
             <h4>{{this.title}}</h4>
             <div class="carousel-indicators sub-carousel">
-                <button v-for="(movie, index) in numOfPage" :key="index" type="button" :data-bs-target="'#mostPopularSlide'" :data-bs-slide-to="index" :class="{'active': index === current}" @click="paginate">
+                <button v-for="(movie, index) in numOfPage" :key="index" type="button" :data-bs-target="'#mostPopularSlide'" :data-bs-slide-to="index" :class="{'active': index === current}" @click="paginate(index)">
                 </button>
             </div>
         </div>
@@ -60,7 +63,9 @@ export default {
                 <div class="movie-item" v-for="(movie, index) in currentMovies" :key="index" @click="movieClick(movie)">
                     <img :src="movie.image" :alt="movie.title">
                     <div class="movie-name">
-                        <h4>{{movie.title}}</h4>
+                        <h5>{{movie.title}}</h5>
+                        <p>Rank: {{movie.rank}}</p>
+                        <p>Year: {{movie.year}}</p>
                     </div>
                 </div>
             </div>

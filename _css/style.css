@@ -86,3 +86,21 @@ body {
     cursor: pointer;
     z-index: 1;
 }
+.movie-name{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-bottom: 0;
+    display: none;
+}
+.movie-item:hover .movie-name {
+    transform: scale(1.2);
+    cursor: pointer;
+    z-index: 1;
+    display: block;
+}
+.movie-name p, h5{
+    margin: 0;
+    padding: 0;
+}
