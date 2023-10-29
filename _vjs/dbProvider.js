@@ -92,6 +92,7 @@ export default {
                             items: top50Movies.slice((page - 1) * perPage, page * perPage)
                         };
                         break;
+                    // get the top highest-grossing movies based on the cumulativeWorldwideGross property
                     case 'topboxoffice':
                         const perPage2 = params.get('per_page') || 10;
                         const page2 = params.get('page') || 1;
@@ -103,11 +104,11 @@ export default {
                         .sort((a, b) => b.boxOffice.cumulativeWorldwideGross.replace(/\D/g, '') - a.boxOffice.cumulativeWorldwideGross.replace(/\D/g, ''))
                         .slice(0, number);
 
-                        console.log('topBoxOfficeMovies.length: ' + topBoxOfficeMovies.length);
-                        console.log(topBoxOfficeMovies);
-                        for (let i = 0; i < topBoxOfficeMovies.length; i++) {
-                            console.log(topBoxOfficeMovies[i].boxOffice.cumulativeWorldwideGross);
-                        }
+                        // console.log('topBoxOfficeMovies.length: ' + topBoxOfficeMovies.length);
+                        // console.log(topBoxOfficeMovies);
+                        // for (let i = 0; i < topBoxOfficeMovies.length; i++) {
+                        //     console.log(topBoxOfficeMovies[i].boxOffice.cumulativeWorldwideGross);
+                        // }
                         result = {
                             page: page2,
                             per_page: perPage2,
@@ -116,6 +117,30 @@ export default {
                             items: topBoxOfficeMovies.slice((page2 - 1) * perPage2, page2 * perPage2)
                         };
                         break;
+                    case 'mostpopular':
+                        const perPage3 = params.get('per_page') || 10;
+                        const page3 = params.get('page') || 1;
+                        const number3 = params.get('number') || 1;
+
+                        // the logic to get the "number" of most popular movies 
+                        const mostPopularMovies = data.MostPopularMovies
+                        .slice(0, number3);
+
+                        // console.log('mostPopularMovies.length: ' + mostPopularMovies.length);
+                        // console.log(mostPopularMovies);
+                        // for (let i = 0; i < mostPopularMovies.length; i++) {
+                        //     console.log(mostPopularMovies[i].rank);
+                        // }
+                        
+                        result = {
+                            page: page3,
+                            per_page: perPage3,
+                            total_page: Math.ceil(mostPopularMovies.length / perPage3),
+                            total: mostPopularMovies.length,
+                            items: mostPopularMovies.slice((page3 - 1) * perPage3, page3 * perPage3)
+                        };
+                        break;
+
 
                     default:
                         throw new Error(`Invalid class: ${cls}`);

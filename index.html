@@ -36,6 +36,13 @@
         // const topHighestRevenue = await dbProvider.fetch(queryString2);
         // console.log('Test: Get top 5 highest-grossing movies');
         // console.log(topHighestRevenue);
+
+        //testcase to get the top 5 most popular movies
+        const queryString3 = 'get/mostpopular/?per_page=5&page=1&number=5';
+        const topRated = await dbProvider.fetch(queryString3);
+        console.log('Test: Get top 5 most popular movies');
+        console.log(topRated);
+
        
         
         createApp (main).mount('#app');
