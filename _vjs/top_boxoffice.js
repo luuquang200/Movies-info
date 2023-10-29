@@ -6,6 +6,7 @@ export default {
             topBoxOfficeMovies: [],
             selectedMovie: {},
             activeIndex: 0,
+            isHide: false,
         }
     },
     async created() {
