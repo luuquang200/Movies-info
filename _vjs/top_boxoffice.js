@@ -64,12 +64,15 @@ export default {
                 <img :src="selectedMovie.image" class="d-block" :alt="selectedMovie.title" @click="movieClick(selectedMovie)">
                 <div class="carousel-caption d-none d-md-block">
                     <h6>{{selectedMovie.fullTitle}}</h6>
+                    <p>Length: {{selectedMovie.runtimeStr}}</p>
+                    <p>Languages: {{selectedMovie.languages}}</p>
                 </div>
             </div>
             <div v-for="(movie, index) in movies.slice(1)" :key="index" class="carousel-item">
                 <img :src="movie.image" class="d-block" :alt="movie.title" @click="movieClick(movie)">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>{{movie.fullTitle}}</h5>
+                    
                 </div>
             </div>
         </div>

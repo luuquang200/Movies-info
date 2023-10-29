@@ -1,7 +1,8 @@
 import vcheader from "./header.js"
 import vcnav from "./nav.js"
 import vctopBoxOfficeMovies from './top_boxoffice.js';
-import vcmostPopular from './mostpopular.js';
+import vcmostPopular from './most_popular.js';
+import vctopRating from './top_rating.js';
 
 export default {
     data() {
@@ -13,7 +14,8 @@ export default {
         vcheader,
         vcnav,
         vctopBoxOfficeMovies,
-        vcmostPopular
+        vcmostPopular,
+        vctopRating,
     },
     template: `
     <div class = container-fluid>
@@ -22,6 +24,7 @@ export default {
             <vcnav/>
             <vctopBoxOfficeMovies/>
             <vcmostPopular/>
+            <vctopRating/>
         </div>
     </div>
     `

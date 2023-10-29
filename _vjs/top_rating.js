@@ -1,10 +1,10 @@
-import dbProvider from '../_vjs/dbProvider.js';
+import dbProvider from './dbProvider.js';
 
 export default {
     data() {
         return {
             isHide: false,
-            title: 'Most Popular',
+            title: 'Top Rating',
             database: [],
             current: 0,
             numOfPage: 0,
@@ -12,7 +12,7 @@ export default {
         }
     },
     async created() {
-        const queryString = `get/mostpopular/?number=${this.numOfElement}`;
+        const queryString = `get/toprated/?number=${this.numOfElement}`;
         const topHighestRevenue = await dbProvider.fetch(queryString);
         console.log('topHighestRevenue');
         console.log(topHighestRevenue);
@@ -54,7 +54,7 @@ export default {
         <div class="movie-header carousel slide">
             <h4>{{this.title}}</h4>
             <div class="carousel-indicators sub-carousel">
-                <button v-for="(movie, index) in numOfPage" :key="index" type="button" :data-bs-target="'#mostPopularSlide'" :data-bs-slide-to="index" :class="{'active': index === current}" @click="paginate(index)">
+                <button v-for="(movie, index) in numOfPage" :key="index" type="button" :data-bs-target="'#topRatedSilde'" :data-bs-slide-to="index" :class="{'active': index === current}" @click="paginate(index)">
                 </button>
             </div>
         </div>
@@ -64,17 +64,16 @@ export default {
                     <img :src="movie.image" :alt="movie.title">
                     <div class="movie-name">
                         <h5>{{movie.title}}</h5>
-                        <p>Rank: {{movie.rank}}</p>
-                        <p>Year: {{movie.year}}</p>
+                        <p>ImDb rating: {{movie.ratings.imDb}}</p>
                     </div>
                 </div>
             </div>
 
-            <button class="carousel-control-prev slide-button" type="button" data-bs-target="#mostPopularSlide" data-bs-slide="prev" @click="prev">
+            <button class="carousel-control-prev slide-button" type="button" data-bs-target="#topRatedSilde" data-bs-slide="prev" @click="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Previous</span>
             </button>
-            <button class="carousel-control-next slide-button" type="button" data-bs-target="#mostPopularSlide" data-bs-slide="next" @click="next">
+            <button class="carousel-control-next slide-button" type="button" data-bs-target="#topRatedSilde" data-bs-slide="next" @click="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="visually-hidden">Next</span>
             </button>

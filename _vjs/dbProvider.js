@@ -2,7 +2,7 @@ import data from './../db/data.js';
 
 export default {
     fetch: async function(queryString) {
-        const movies = data.Movies;
+        // const movies = data.Movies;
         const [type, cls, patternWithParams] = queryString.split('/');
         const [pattern, queryParamsString] = patternWithParams.split('?');
         const queryParams = new URLSearchParams(queryParamsString);
@@ -23,7 +23,7 @@ export default {
                         const page = params.get('page') || 1;
 
                         // the search logic 
-                        const searchResults = movies.filter(movie => movie.title.toLowerCase().includes(searchQuery.toLowerCase()));
+                        const searchResults = data.Movies.filter(movie => movie.title.toLowerCase().includes(searchQuery.toLowerCase()));
                         console.log('searchResults.length: ' + searchResults.length);
                         result = {
                             search: searchQuery,
@@ -47,7 +47,7 @@ export default {
                         const id = pattern;
 
                         // the detail logic 
-                        const movie = movies.find(movie => movie.id === id);
+                        const movie = data.Movies.find(movie => movie.id === id);
 
                         result = {
                             id: id,
@@ -82,7 +82,7 @@ export default {
                         const page = params.get('page') || 1;
 
                         // the get logic 
-                        const top50Movies = movies.slice(0, 50);
+                        const top50Movies = data.Movies.slice(0, 50);
 
                         result = {
                             page: page,
@@ -99,7 +99,7 @@ export default {
                         const number = params.get('number') || 1;
 
                         // the logic to get the "number" of top highest-grossing movies 
-                        const topBoxOfficeMovies = movies
+                        const topBoxOfficeMovies = data.Movies
                         .filter(movie => movie.boxOffice && movie.boxOffice.cumulativeWorldwideGross)
                         .sort((a, b) => b.boxOffice.cumulativeWorldwideGross.replace(/\D/g, '') - a.boxOffice.cumulativeWorldwideGross.replace(/\D/g, ''))
                         .slice(0, number);
@@ -140,7 +140,25 @@ export default {
                             items: mostPopularMovies
                         };
                         break;
+                    case 'toprated':
+                        const perPage4 = params.get('per_page') || 10;
+                        const page4 = params.get('page') || 1;
+                        const number4 = params.get('number') || 1;
 
+                        // the logic to get the "number" of top rated movies base on the imDbRating property
+                        const topRatedMovies = data.Movies
+                        .filter(movie => movie.ratings && movie.ratings.imDb)
+                        .sort((a, b) => b.ratings.imDb.replace(/\D/g, '') - a.ratings.imDb.replace(/\D/g, ''))
+                        .slice(0, number4);
+
+                        result = {
+                            page: page4,
+                            per_page: perPage4,
+                            total_page: Math.ceil(topRatedMovies.length / perPage4),
+                            total: topRatedMovies.length,
+                            items: topRatedMovies
+                        };
+                        break;
 
                     default:
                         throw new Error(`Invalid class: ${cls}`);
