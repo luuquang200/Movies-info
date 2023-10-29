@@ -50,13 +50,20 @@
         // console.log(topRated);
 
         //testcase to get the reviews by id
-        const queryString5 = 'get/reviews/?id=tt0012349';
-        const topRated = await dbProvider.fetch(queryString5);
-        console.log('Test: Get reviews by id ------------------------- index.html');
+        // const queryString5 = 'get/reviews/?id=tt0012349';
+        // const topRated = await dbProvider.fetch(queryString5);
+        // console.log('Test: Get reviews by id ------------------------- index.html');
+        // console.log(topRated);
+
+        //testcase to get movie by id
+        const queryString6 = 'detail/movie/tt9362722';
+        const topRated = await dbProvider.fetch(queryString6);
+        console.log('Test: Get movie by id ------------------------- index.html');
         console.log(topRated);
 
         
         createApp (main).mount('#app');
       </script>
+          <link rel="stylesheet" href="./_css/style.css">
 </body>
 </html>

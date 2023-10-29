@@ -55,8 +55,14 @@ export default {
             window.location.reload();
           }
         });
+        $('#main').fadeOut();
+        $("#main").delay(1000).fadeIn('slow');
+        $('.loading').delay(500).fadeOut('slow');
     },
     template: `
+    <div class='loading'>
+        <div class="spinner"></div>
+    </div>
     <div class = container-fluid>
         <div class="row">
             <vcheader/>

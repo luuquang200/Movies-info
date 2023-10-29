@@ -168,14 +168,13 @@ export default {
 
                         // the logic to get the "number" of reviews 
                         const reviews = data.Reviews.filter(review => review.movieId === id);
-                        const items = reviews[0].items;
                         
                         result = {
                             page: page4,
                             per_page: perPage4,
                             total_page: Math.ceil(reviews.length / perPage4),
                             total: reviews.length,
-                            items: items.slice((page4 - 1) * perPage4, page4 * perPage4)
+                            items: reviews[0].items.slice((page4 - 1) * perPage4, page4 * perPage4)
                         };
                         break;
                        
