@@ -10,7 +10,7 @@ export default {
         }
     },
     async created() {
-        const queryString = 'get/topboxoffice/?per_page=5&page=1&number=5';
+        const queryString = 'get/topboxoffice/?per_page=5&page=1';
         const topHighestRevenue = await dbProvider.fetch(queryString);
         this.topBoxOfficeMovies = topHighestRevenue.items;
         this.selectedMovie = this.topBoxOfficeMovies[0] || {};

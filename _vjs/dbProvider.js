@@ -81,8 +81,10 @@ export default {
                         const perPage = params.get('per_page') || 10;
                         const page = params.get('page') || 1;
 
-                        // the get logic 
-                        const top50Movies = data.Movies.slice(0, 50);
+                        // the get logic get the top rated movies base on the imDbRating property
+                        const top50Movies = data.Movies
+                        .filter(movie => movie.ratings && movie.ratings.imDb)
+                        .sort((a, b) => b.ratings.imDb.replace(/\D/g, '') - a.ratings.imDb.replace(/\D/g, ''))
 
                         result = {
                             page: page,
@@ -96,13 +98,12 @@ export default {
                     case 'topboxoffice':
                         const perPage2 = params.get('per_page') || 10;
                         const page2 = params.get('page') || 1;
-                        const number = params.get('number') || 1;
 
                         // the logic to get the "number" of top highest-grossing movies 
                         const topBoxOfficeMovies = data.Movies
                         .filter(movie => movie.boxOffice && movie.boxOffice.cumulativeWorldwideGross)
                         .sort((a, b) => b.boxOffice.cumulativeWorldwideGross.replace(/\D/g, '') - a.boxOffice.cumulativeWorldwideGross.replace(/\D/g, ''))
-                        .slice(0, number);
+                        
 
                         // console.log('topBoxOfficeMovies.length: ' + topBoxOfficeMovies.length);
                         // console.log(topBoxOfficeMovies);
@@ -120,11 +121,9 @@ export default {
                     case 'mostpopular':
                         const perPage3 = params.get('per_page') || 10;
                         const page3 = params.get('page') || 1;
-                        const number3 = params.get('number') || 1;
 
                         // the logic to get the "number" of most popular movies 
                         const mostPopularMovies = data.MostPopularMovies
-                        .slice(0, number3);
 
                         // console.log('mostPopularMovies.length: ' + mostPopularMovies.length);
                         // console.log(mostPopularMovies);
@@ -137,26 +136,7 @@ export default {
                             per_page: perPage3,
                             total_page: Math.ceil(mostPopularMovies.length / perPage3),
                             total: mostPopularMovies.length,
-                            items: mostPopularMovies
-                        };
-                        break;
-                    case 'toprated':
-                        const perPage4 = params.get('per_page') || 10;
-                        const page4 = params.get('page') || 1;
-                        const number4 = params.get('number') || 1;
-
-                        // the logic to get the "number" of top rated movies base on the imDbRating property
-                        const topRatedMovies = data.Movies
-                        .filter(movie => movie.ratings && movie.ratings.imDb)
-                        .sort((a, b) => b.ratings.imDb.replace(/\D/g, '') - a.ratings.imDb.replace(/\D/g, ''))
-                        .slice(0, number4);
-
-                        result = {
-                            page: page4,
-                            per_page: perPage4,
-                            total_page: Math.ceil(topRatedMovies.length / perPage4),
-                            total: topRatedMovies.length,
-                            items: topRatedMovies
+                            items: mostPopularMovies.slice((page3 - 1) * perPage3, page3 * perPage3)
                         };
                         break;
 

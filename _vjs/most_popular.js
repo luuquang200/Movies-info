@@ -7,20 +7,17 @@ export default {
             title: 'Most Popular',
             database: [],
             current: 0,
-            numOfPage: 0,
-            numOfElement: 15,
+            numOfPage: 5,
         }
     },
     async created() {
-        const queryString = `get/mostpopular/?number=${this.numOfElement}`;
+        const queryString = `get/mostpopular/?per_page=15&page=1`;
         const topHighestRevenue = await dbProvider.fetch(queryString);
         console.log('topHighestRevenue');
         console.log(topHighestRevenue);
         this.database = topHighestRevenue.items;
-        this.numOfPage = Math.ceil(this.numOfElement / 3);
         console.log('this.database');
         console.log(this.database);
-       
     },
     computed: {
         currentMovies() {

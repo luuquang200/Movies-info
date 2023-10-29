@@ -7,17 +7,15 @@ export default {
             title: 'Top Rating',
             database: [],
             current: 0,
-            numOfPage: 0,
-            numOfElement: 15,
+            numOfPage: 5
         }
     },
     async created() {
-        const queryString = `get/toprated/?number=${this.numOfElement}`;
+        const queryString = `get/top50/?per_page=15&page=1`;
         const topHighestRevenue = await dbProvider.fetch(queryString);
         console.log('topHighestRevenue');
         console.log(topHighestRevenue);
         this.database = topHighestRevenue.items;
-        this.numOfPage = Math.ceil(this.numOfElement / 3);
         console.log('this.database');
         console.log(this.database);
        
