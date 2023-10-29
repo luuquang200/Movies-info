@@ -3,6 +3,7 @@ import vcnav from "./nav.js"
 import vctopBoxOfficeMovies from './top_boxoffice.js';
 import vcmostPopular from './most_popular.js';
 import vctopRating from './top_rating.js';
+import vcfooter from "./footer.js"
 
 export default {
     data() {
@@ -16,6 +17,7 @@ export default {
         vctopBoxOfficeMovies,
         vcmostPopular,
         vctopRating,
+        vcfooter
     },
     template: `
     <div class = container-fluid>
@@ -25,6 +27,7 @@ export default {
             <vctopBoxOfficeMovies/>
             <vcmostPopular/>
             <vctopRating/>
+            <vcfooter/>
         </div>
     </div>
     `
