@@ -16,8 +16,10 @@ export default {
             this.$emit('movieClick', id);
         },
         async getResults() {
-            const queryString = `search/movie/${this.query}?per_page=${this.perPage}&page=${this.currentPage}`;
-            const movies = await dbProvider.fetch(queryString);
+            const queryStringMovie = `search/movie/${this.query}?per_page=${this.perPage}&page=${this.currentPage}`;
+            const movies = await dbProvider.fetch(queryStringMovie);
+            // const queryStringByNameActor = `search/name/${this.query}?per_page=${this.perPage}&page=${this.currentPage}`;
+            // const moviesOfActor = await dbProvider.fetch(queryStringByNameActor);
             this.movies = movies.items;
             this.totalResults = movies.total;
         },

@@ -35,6 +35,22 @@ export default {
                         };
                         break;
                     case 'name':
+                        const searchQuery2 = pattern;
+                        const perPage2 = params.get('per_page') || 10;
+                        const page2 = params.get('page') || 1;
+
+
+                        // the search logic to get the list of movies by name of actor
+                        const searchResults2 = data.Movies.filter(movie => movie.actorList.some(actor => actor.name.toLowerCase().includes(searchQuery2.toLowerCase())));
+                        console.log('searchResults2.length: ' + searchResults2.length);
+                        result = {
+                            search: searchQuery2,
+                            page: page2, 
+                            per_page: perPage2,
+                            total_page: Math.ceil(searchResults2.length / perPage2),
+                            total: searchResults2.length,
+                            items: searchResults2.slice((page2 - 1) * perPage2, page2 * perPage2)
+                        };
 
                         break;
                     default:
@@ -144,6 +160,25 @@ export default {
                             total: mostPopularMovies.length,
                             items: mostPopularMovies.slice((page3 - 1) * perPage3, page3 * perPage3)
                         };
+                        break;
+                    case 'reviews':
+                        const perPage4 = params.get('per_page') || 10;
+                        const page4 = params.get('page') || 1;
+                        const id = params.get('id') || 1;
+
+                        // the logic to get the "number" of reviews 
+                        const reviews = data.Reviews.filter(review => review.movieId === id);
+                        const items = reviews[0].items;
+                        
+                        result = {
+                            page: page4,
+                            per_page: perPage4,
+                            total_page: Math.ceil(reviews.length / perPage4),
+                            total: reviews.length,
+                            items: items.slice((page4 - 1) * perPage4, page4 * perPage4)
+                        };
+                        break;
+                       
                         break;
 
                     default:

@@ -49,6 +49,12 @@
         // console.log('Test: Get top 5 rated movies');
         // console.log(topRated);
 
+        //testcase to get the reviews by id
+        const queryString5 = 'get/reviews/?id=tt0012349';
+        const topRated = await dbProvider.fetch(queryString5);
+        console.log('Test: Get reviews by id ------------------------- index.html');
+        console.log(topRated);
+
         
         createApp (main).mount('#app');
       </script>
