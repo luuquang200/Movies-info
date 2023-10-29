@@ -18,7 +18,7 @@ export default {
         console.log('this.database');
         console.log(this.database);
     },
-    props:['isHide'],
+    props:['isHide', 'isShowSearchResult'],
     computed: {
         currentMovies() {
             const start = this.current * 3;
@@ -49,7 +49,7 @@ export default {
         },
     },
     template: `
-    <template v-if="!isHide">
+    <template v-if="!isHide && !isShowSearchResult">
         <div class="movie-header carousel slide">
             <h4>{{this.title}}</h4>
             <div class="carousel-indicators sub-carousel">

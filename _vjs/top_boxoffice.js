@@ -20,7 +20,7 @@ export default {
             return this.topBoxOfficeMovies.slice(1);
         }
     },
-    props:['isHide'],
+    props:['isHide', 'isShowSearchResult'],
     methods: {
         //  click on poster
         movieClick(movie) {
@@ -53,7 +53,7 @@ export default {
         },
     },
     template: `
-    <template v-if="!isHide">
+    <template v-if="!isHide && !isShowSearchResult">
     <div id="topBoxOfficeSlide" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
             <button v-for="(movie, index) in topBoxOfficeMovies" :key="index" type="button" :data-bs-target="'#topBoxOfficeSlide'" :data-bs-slide-to="index" :class="{'active': index === activeIndex}" @click="setActiveIndex(index)">

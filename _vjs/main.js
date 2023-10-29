@@ -6,7 +6,7 @@ import vctopRating from './top_rating.js';
 import vcfooter from "./footer.js"
 import vcdetailMovie from "./detail_movie.js"
 import dbProvider from './dbProvider.js';
-
+import searchResult from './search_result.js';
 
 
 export default {
@@ -14,6 +14,8 @@ export default {
         return {
             showDetail: false,
             movie: {},
+            searchQuery: "",
+            isShowSearchResult: false,
         }
     },
     components: {
@@ -23,11 +25,13 @@ export default {
         vcmostPopular,
         vctopRating,
         vcfooter,
-        vcdetailMovie
+        vcdetailMovie,
+        searchResult,
     },
     methods: {
         async loadDetailMovie(id) {
             this.showDetail=true;
+            this.isShowSearchResult = false;
             const queryString = `detail/movie/${id}`;
             const movie = await dbProvider.fetch(queryString);
             console.log('movie');
@@ -39,6 +43,10 @@ export default {
             window.history.pushState(null, '', './');
             window.location.reload();
         },
+        handleSearch(src) {
+            this.searchQuery = src;
+            this.isShowSearchResult = true;
+        }
     },
     mounted() {
         window.history.pushState(null, '', './');
@@ -52,12 +60,13 @@ export default {
     <div class = container-fluid>
         <div class="row">
             <vcheader/>
-            <vcnav/>
+            <vcnav @search="(src)=>handleSearch(src)"/>
             <vcdetailMovie :isHide='showDetail' :movie='movie'/>
-            <vctopBoxOfficeMovies :isHide='showDetail' @movieClick="(id) => loadDetailMovie(id)"/>
-            <vcmostPopular :isHide='showDetail'  @movieClick="(id) => loadDetailMovie(id)"/>
-            <vctopRating :isHide='showDetail'  @movieClick="(id) => loadDetailMovie(id)"/>
-            <vcfooter :isHide='showDetail'/>
+            <searchResult :isShowSearchResult='isShowSearchResult' :query='searchQuery' @movieClick="(id) => loadDetailMovie(id)"/>
+            <vctopBoxOfficeMovies :isHide='showDetail' :isShowSearchResult='isShowSearchResult' @movieClick="(id) => loadDetailMovie(id)"/>
+            <vcmostPopular :isHide='showDetail' :isShowSearchResult='isShowSearchResult'  @movieClick="(id) => loadDetailMovie(id)"/>
+            <vctopRating :isHide='showDetail' :isShowSearchResult='isShowSearchResult' @movieClick="(id) => loadDetailMovie(id)"/>
+            <vcfooter :isHide='showDetail' />
         </div>
     </div>
     `

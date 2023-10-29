@@ -25,11 +25,11 @@
         import main from "./_vjs/main.js";
 
         import dbProvider from './_vjs/dbProvider.js';
-        // const searchQuery = 'The';
-        // const queryString = `search/movie/${searchQuery}?per_page=10&page=1`;
-        // const searchResults = await dbProvider.fetch(queryString);
-        // console.log('Test: Search for movies with "the" in the title');
-        // console.log(searchResults);
+        const searchQuery = 'The';
+        const queryString = `search/movie/${searchQuery}?per_page=10&page=1`;
+        const searchResults = await dbProvider.fetch(queryString);
+        console.log('Test: Search for movies with "the" in the title');
+        console.log(searchResults);
 
         //testcase to get the top 5 highest-grossing movies
         // const queryString2 = 'get/topboxoffice/?per_page=5&page=1&number=5';
