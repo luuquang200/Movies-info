@@ -6,7 +6,6 @@ export default {
             topBoxOfficeMovies: [],
             selectedMovie: {},
             activeIndex: 0,
-            isHide: false,
         }
     },
     async created() {
@@ -21,10 +20,12 @@ export default {
             return this.topBoxOfficeMovies.slice(1);
         }
     },
+    props:['isHide'],
     methods: {
         //  click on poster
         movieClick(movie) {
-            this.selectedMovie = movie;
+            const id = movie.id; 
+            this.$emit("movieClick", id); 
         },
         next() {
             const index = this.topBoxOfficeMovies.indexOf(this.selectedMovie);

@@ -3,7 +3,6 @@ import dbProvider from './dbProvider.js';
 export default {
     data() {
         return {
-            isHide: false,
             title: 'Top Rating',
             database: [],
             current: 0,
@@ -20,6 +19,7 @@ export default {
         console.log(this.database);
        
     },
+    props:['isHide'],
     computed: {
         currentMovies() {
             const start = this.current * 3;
@@ -29,6 +29,8 @@ export default {
     },
     methods: {
         movieClick(movie) {
+            const id = movie.id; 
+            this.$emit("movieClick", id); 
         },
         next() {
             if (this.current < this.numOfPage - 1) {

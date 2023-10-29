@@ -44,32 +44,38 @@ export default {
             case 'detail':
                 switch (cls) {
                     case 'movie':
-                        const id = pattern;
+                        const default_id = data.Movies[0].id;
+                        const id = pattern !== undefined ? pattern : default_id;
 
                         // the detail logic 
                         const movie = data.Movies.find(movie => movie.id === id);
 
-                        result = {
-                            id: id,
-                            title: movie.title,
-                            year: movie.year,
-                            plot: movie.plot,
-                            awards: movie.awards,
-                            directorList: movie.directorList,
-                            writerList: movie.writerList,
-                            actorList: movie.actorList,
-                            genreList: movie.genreList,
-                            companies: movie.companies,
-                            countries: movie.countries,
-                            languages: movie.languages,
-                            ratings: movie.ratings,
-                            posters: movie.posters,
-                            images: movie.images,
-                            boxOffice: movie.boxOffice,
-                            keywords: movie.keywords,
-                            similars: movie.similars,
-                            plotFull: movie.plotFull
-                        };
+                        if (movie) {
+                            result = {
+                              id: id,
+                              title: movie.title,
+                              image: movie.image,
+                              year: movie.year,
+                              plot: movie.plot,
+                              awards: movie.awards,
+                              directorList: movie.directorList,
+                              writerList: movie.writerList,
+                              actorList: movie.actorList,
+                              genreList: movie.genreList,
+                              companies: movie.companies,
+                              countries: movie.countries,
+                              languages: movie.languages,
+                              ratings: movie.ratings,
+                              posters: movie.posters,
+                              images: movie.images,
+                              boxOffice: movie.boxOffice,
+                              keywords: movie.keywords,
+                              similars: movie.similars,
+                              plotFull: movie.plotFull
+                            };
+                        } else {
+                            result = { error: 'Movie not found' };
+                        }
                         break;
                     default:
                         throw new Error(`Invalid class: ${cls}`);

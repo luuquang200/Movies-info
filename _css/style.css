@@ -1,13 +1,33 @@
+html{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
 
 body {
     background-color: #cccccc;
     padding: 8px;
+    max-width: 1200px;
 }
 
 .alert {
     background-color: white;
     width: 100% ;
 }
+
+nav{
+    background-color: #070D0D !important;
+    color: white !important;
+}
+/* .alert-dark {
+    background-color: #070D0D !important;
+    color: white !important;
+} */
+.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
 
 .carousel {
     margin-top: 20px;
@@ -21,6 +41,15 @@ body {
     height: auto;
     max-width: 440px;
     max-height: 600px;
+}
+.detal-movie img{
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: auto;
+    max-width: 440px;
+    max-height: 600px;
+    margin-bottom: 20px;
 }
 
 .movie-component {
