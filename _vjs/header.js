@@ -16,19 +16,16 @@ export default {
     methods: {
         darkMode() {
             const body = $('body');
-            console.log(body);
-            console.log($('.navbar'));
             const darkModeSwitch = $('#darkmode');
 
             darkModeSwitch.on('change', () => {
                 if (darkModeSwitch.is(':checked')) {
                     body.addClass('dark-mode');
                     $('.alert').css({
-                        'background-color': '#070d0d',
+                        'background-color': '#212529',
                         'color': 'white'
                     });
-                    $('.navbar').css({
-                        'background-color': '#070d0d',
+                    $('.navbar-brand').css({
                         'color': 'white'
                     });
                 } else {
@@ -36,6 +33,9 @@ export default {
                     $('.alert').css({
                         'background-color': '',
                         'color': ''
+                    });
+                    $('.navbar-brand').css({
+                        'color': 'black'
                     });
                 }
             });

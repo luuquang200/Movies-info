@@ -10,7 +10,7 @@ export default {
         },
     },
     template: `   
-        <nav class="alert navbar bg-body-tertiary rounded">
+        <nav class="alert navbar rounded">
             <div class="container-fluid">
             <a class="navbar-brand" href="./index.html">Home</a>
                 <form class="d-flex" @submit.prevent="search">

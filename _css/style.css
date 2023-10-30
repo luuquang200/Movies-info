@@ -15,16 +15,8 @@ body {
     width: 100% ;
 }
 
-nav{
-    background-color: #070D0D !important;
-    color: white !important;
-}
-/* .alert-dark {
-    background-color: #070D0D !important;
-    color: white !important;
-} */
 .dark-mode {
-    background-color: #333;
+    background-color: #141414;
     color: #fff;
 }
 
