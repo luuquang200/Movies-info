@@ -69,13 +69,6 @@ export default {
                     <p>Languages: {{selectedMovie.languages}}</p>
                 </div>
             </div>
-            <div v-for="(movie, index) in movies.slice(1)" :key="index" class="carousel-item">
-                <img :src="movie.image" class="d-block" :alt="movie.title" @click="movieClick(movie)">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>{{movie.fullTitle}}</h5>
-                    
-                </div>
-            </div>
         </div>
 
         <button class="carousel-control-prev" type="button" :data-bs-target="'#topBoxOfficeSlide'" data-bs-slide="prev" @click="prev">

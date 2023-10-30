@@ -126,12 +126,6 @@ export default {
                         .filter(movie => movie.boxOffice && movie.boxOffice.cumulativeWorldwideGross)
                         .sort((a, b) => b.boxOffice.cumulativeWorldwideGross.replace(/\D/g, '') - a.boxOffice.cumulativeWorldwideGross.replace(/\D/g, ''))
                         
-
-                        // console.log('topBoxOfficeMovies.length: ' + topBoxOfficeMovies.length);
-                        // console.log(topBoxOfficeMovies);
-                        // for (let i = 0; i < topBoxOfficeMovies.length; i++) {
-                        //     console.log(topBoxOfficeMovies[i].boxOffice.cumulativeWorldwideGross);
-                        // }
                         result = {
                             page: page2,
                             per_page: perPage2,
